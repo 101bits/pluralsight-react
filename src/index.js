@@ -11,14 +11,18 @@ import {loadCourses} from './actions/courseActions';
 import './styles/styles.css'; //Webpack can import CSS files too!
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import '../node_modules/toastr/build/toastr.min.css';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
 
 const store = configureStore();
 store.dispatch(loadCourses());
 store.dispatch(loadAuthors());
 
 render(
-  <Provider store={store}>
-    <Router history={browserHistory} routes={routes}/>
-  </Provider>,
+  <MuiThemeProvider muiTheme={getMuiTheme()}>
+    <Provider store={store}>
+      <Router history={browserHistory} routes={routes}/>
+    </Provider>
+  </MuiThemeProvider>,
   document.getElementById('app')
 );
